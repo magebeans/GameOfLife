@@ -20,7 +20,7 @@ public class Main extends Application{
             }
         };
 
-        HBox toolbar = makeToolbar(board,timer);
+        HBox toolbar = makeToolbar(board,timer, stage);
 
         root.getChildren().addAll(toolbar, board);
         stage.setScene(new Scene(root));
@@ -33,7 +33,7 @@ public class Main extends Application{
         timer.stop();
     }
 
-    private HBox makeToolbar(Board board, AnimationTimer timer){
+    private HBox makeToolbar(Board board, AnimationTimer timer, Stage stage){
         Button pause = new Button("Pause");
         pause.setOnMouseClicked(e -> timer.stop());
 
@@ -46,7 +46,13 @@ public class Main extends Application{
         Button clear = new Button("Clear");
         clear.setOnMouseClicked(e -> board.clear());
 
-        HBox ret = new HBox(10,play,pause,seed, clear);
+        Button save = new Button("Save");
+        save.setOnMouseClicked(e -> board.save(stage));
+
+        Button load = new Button("Load");
+        load.setOnMouseClicked(e -> board.load(stage));
+
+        HBox ret = new HBox(10,play,pause,seed, clear, save, load);
         ret.setAlignment(Pos.CENTER);
         return ret;
     }
