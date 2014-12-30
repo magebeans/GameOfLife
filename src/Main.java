@@ -43,7 +43,10 @@ public class Main extends Application{
         Button seed = new Button("Seed");
         seed.setOnMouseClicked(e -> board.seed());
 
-        HBox ret = new HBox(10,play,pause,seed);
+        Button clear = new Button("Clear");
+        clear.setOnMouseClicked(e -> board.clear());
+
+        HBox ret = new HBox(10,play,pause,seed, clear);
         ret.setAlignment(Pos.CENTER);
         return ret;
     }

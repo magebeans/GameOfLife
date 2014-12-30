@@ -58,12 +58,18 @@ public class Board extends Canvas {
         }
     }
 
-    private Cell get(int x, int y){
-        if(x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT){
-            return new Cell(false);
-        } else {
-            return grid[x][y];
+    public void clear(){
+        for(int i = 0; i < WIDTH; i++){
+            for(int j = 0; j < HEIGHT; j++){
+                grid[i][j] = new Cell(false);
+            }
         }
+    }
+
+    private Cell get(int x, int y){
+        x = (x + WIDTH) % WIDTH;
+        y = (y + HEIGHT) % HEIGHT;
+        return grid[x][y];
     }
 
     private void draw(){
